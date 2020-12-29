@@ -72,8 +72,8 @@ function App() {
     const newResponses = [
       ...responses,
       {
-        tacoId: taco[activeTaco].tacoId,
-        tastiness,
+        tacoId: taco.tacoId,
+        tastinessScore: tastiness,
         isTacoBell: taco.isTacoBell,
       },
     ];
@@ -84,6 +84,7 @@ function App() {
     if (activeTaco === tacos.length - 1) {
       //TODO implement submission
       console.log("Saving your responses");
+      console.log(newResponses);
       return;
     }
     setActiveTaco(activeTaco + 1);

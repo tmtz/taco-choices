@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
   const { responses } = JSON.parse(event.body);
+
   const result = await fetch(process.env.HASURA_URL, {
     method: "POST",
     headers: {
@@ -9,13 +10,13 @@ exports.handler = async (event) => {
     },
     body: JSON.stringify({
       query: `
-    mutation AddTacoVote($objects: [tacoVotes_insert_input!]  {
-      insert_tacoVotes(objects: $objects) {
-        affected_rows
-      }
-    }
-    
-    `,
+        mutation AddTacoVotes($objects: [tacoVotes_insert_input!]!) {
+          insert_tacoVotes(objects: $objects) {
+            affected_rows
+          }
+        }
+      
+      `,
       variables: {
         objects: responses,
       },
@@ -26,6 +27,7 @@ exports.handler = async (event) => {
     console.error(result);
     return [];
   }
+
   return {
     statusCode: 200,
     body: "ok",
