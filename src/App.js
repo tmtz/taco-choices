@@ -98,10 +98,8 @@ function App() {
       <main>
         {isDone ? (
           <div className="results">
-            <h2>
-              <marquee>Thank you for voting!</marquee>
-            </h2>
-            <p>Emma and Jason will return in...</p>
+            <h2>Thank you for voting!</h2>
+            <p>Tobi will return in...</p>
             <h3>Tacos and Graphs, the Final Showdown</h3>
           </div>
         ) : (
