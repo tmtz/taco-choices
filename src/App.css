@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  padding:2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.current-vote{
+padding:2rem;
+
+}
+form {
+  display:flex;
+  flex-direction: column;
+  max-width: 400px;
+  align-items: center;
+  margin: 2rem auto 5rem;
+}
+
+button {
+margin-top: 1rem;
+background: salmon;
+border: 0;
+padding: 0.5rem 1rem;
+color:black;
+transition: transform .2s;
+}
+button:hover,
+button:focus {
+  transform:scale(1.1);
+}
+
+.current-vote img{
+  width: 400px;
+  height: 300px;
+  object-fit:cover;
+  margin: 10px;
 }
