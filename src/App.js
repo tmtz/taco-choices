@@ -104,13 +104,6 @@ function App() {
           </div>
         ) : (
           <div className="current-vote">
-            {/* 
-          1. image
-          2. form
-            - question heading
-            - yes
-            - no
-           */}
             <img src={taco.src} alt={taco.alt} />
             <form onSubmit={handleSubmit}>
               <h2>How delicious is this taco?</h2>
