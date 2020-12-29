@@ -57,18 +57,12 @@ function App() {
   const [responses, setResponses] = useState([]);
   const [activeTaco, setActiveTaco] = useState(0);
   const [tastiness, setTastiness] = useState(3);
+  const [isDone, setIsDone] = useState(false);
 
-  const taco = tacos[activeTaco];
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    //1 save the current taco ID and its rating
-    // setResponses((currentResponses) => [
-    //   ...currentResponses,
-    //   { id: tacos[activeTaco].id, tastiness },
-    // ]);
-    // ersetzt durch
+
     const taco = tacos[activeTaco];
-    //Schlechte Lösung! useEffect wäre besser
     const newResponses = [
       ...responses,
       {
@@ -80,16 +74,22 @@ function App() {
 
     setResponses(newResponses);
 
-    //2 check if this the last taco
     if (activeTaco === tacos.length - 1) {
-      //TODO implement submission
-      console.log("Saving your responses");
-      console.log(newResponses);
+      setIsDone(true);
+
+      await fetch("/.netlify/functions/hasura-add-response", {
+        method: "POST",
+        body: JSON.stringify({ responses: newResponses }),
+      });
+
       return;
     }
+
     setActiveTaco(activeTaco + 1);
     setTastiness(3);
   }
+
+  const taco = tacos[activeTaco];
 
   return (
     <div className="App">
