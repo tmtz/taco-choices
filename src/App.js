@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 import "./App.css";
 
 const tacos = [
@@ -94,15 +93,32 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>We Need to Taco 'Bout Your Choice</h1>
+        <h1>We Need to Taco 'Bout Your Choices</h1>
       </header>
       <main>
-        <div className="current-vote">
-          <img src={taco.src} alt={taco.alt} />
-          <form onSubmit={handleSubmit}>
-            <h2>How is this Taco</h2>
-            <label htmlFor="amoun">
-              Choose 1 for "garbage" and 5 for "I would die for this taco"
+        {isDone ? (
+          <div className="results">
+            <h2>
+              <marquee>Thank you for voting!</marquee>
+            </h2>
+            <p>Emma and Jason will return in...</p>
+            <h3>Tacos and Graphs, the Final Showdown</h3>
+          </div>
+        ) : (
+          <div className="current-vote">
+            {/* 
+          1. image
+          2. form
+            - question heading
+            - yes
+            - no
+           */}
+            <img src={taco.src} alt={taco.alt} />
+            <form onSubmit={handleSubmit}>
+              <h2>How delicious is this taco?</h2>
+              <label htmlFor="amount">
+                Choose 1 for "garbage" and 5 for "I would die for this taco"
+              </label>
               <input
                 id="amount"
                 type="range"
@@ -119,16 +135,14 @@ function App() {
                 <option value={4}></option>
                 <option value={5} label="5"></option>
               </datalist>
-            </label>
-            <button>Save and Rate Next</button>
-          </form>
-        </div>
+
+              <button>Save and Rate the Next Taco</button>
+            </form>
+          </div>
+        )}
       </main>
     </div>
   );
 }
 
-// {tacos.map((taco) => (
-//   <img key={taco.tacoId} src={taco.src} alt={taco.alt} />
-// ))}
 export default App;
